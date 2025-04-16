@@ -1,9 +1,15 @@
+import os
 import googlemaps
 import pandas as pd
 from itertools import permutations
 from typing import Dict, Tuple, List
 import time
 from dotenv import load_dotenv
+from pathlib import Path
+
+# Step 1: Get the current directory (where this script is located)
+base_dir = Path(__file__).resolve().parent
+data_dir = base_dir
 
 # Load environment variables
 load_dotenv()
@@ -73,7 +79,7 @@ def find_shortest_path(locations: List[str], distances: Dict[Tuple[str, str], fl
 
 # Example usage
 if __name__ == "__main__":
-    excel_path = r"D:\website\shortest-path\landmarks.xlsx"
+    excel_path = data_dir / 'landmarks.xlsx'
     landmarks = read_landmarks(excel_path)
     distances = get_distance_matrix(landmarks)
     locations = list(landmarks.keys())
